@@ -74,9 +74,8 @@ available-artifact statistics separately.
 and [`paper_table_verification.csv`](predictions/table1/paper_table_verification.csv) provides the
 per-cell comparison with the paper, including the documented baseline-specific scoring rules.
 
-The bound-component diagnostic uses one checkpoint from ten runs for each configuration.
-Its LoRA ranks are r=128 for Llama-3.1-8B-Instruct and r=64 for Qwen3-1.7B. Table 1 uses r=64
-for both students and reports ten-run means.
+The bound-component diagnostic uses LoRA ranks r=128 for Llama-3.1-8B-Instruct and r=64
+for Qwen3-1.7B. Table 1 uses r=64 for both students and reports ten-run means.
 
 ## Repository layout
 
