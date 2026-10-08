@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drpc"
+version = "1.0.0"
+description = "Structural Rationale Distillation via Reasoning Space Compression (D-RPC)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [{ name = "Jialin Yang" }]
+keywords = ["knowledge distillation", "reasoning", "large language models", "rationale distillation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.9",
+    "transformers>=4.57",
+    "peft>=0.18",
+    "datasets",
+    "accelerate",
+    "numpy",
+    "pandas",
+    "tqdm",
+    "openai",
+    "sentence-transformers",
+    "scikit-learn",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+bank = ["gensim"]
+test = ["pytest"]
+
+[project.urls]
+Paper = "https://arxiv.org/abs/2605.07139"
+Repository = "https://github.com/Marvelrex/D-RPC"
+
+[tool.setuptools.packages.find]
+include = ["drpc*"]

@@ -1,0 +1,16 @@
+torch==2.9.0
+transformers==4.57.1
+peft==0.18.0
+datasets
+accelerate
+numpy
+pandas
+tqdm
+openai
+sentence-transformers
+scikit-learn
+pyyaml
+# optional: word2vec-based path de-duplication (drpc/bank/train_taxonomy_word2vec.py, --w2v-model)
+gensim
+# optional: tests
+pytest

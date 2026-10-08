@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "Structural Rationale Distillation via Reasoning Space Compression"
+authors:
+  - family-names: Yang
+    given-names: Jialin
+  - family-names: Wang
+    given-names: Jiankun
+  - family-names: Wu
+    given-names: Jiajun
+  - family-names: Leung
+    given-names: Henry
+  - family-names: Zhou
+    given-names: Jiayu
+  - family-names: Drew
+    given-names: Steve
+repository-code: "https://github.com/Marvelrex/D-RPC"
+url: "https://arxiv.org/abs/2605.07139"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "Structural Rationale Distillation via Reasoning Space Compression"
+  authors:
+    - family-names: Yang
+      given-names: Jialin
+    - family-names: Wang
+      given-names: Jiankun
+    - family-names: Wu
+      given-names: Jiajun
+    - family-names: Leung
+      given-names: Henry
+    - family-names: Zhou
+      given-names: Jiayu
+    - family-names: Drew
+      given-names: Steve
+  collection-title: "The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026)"
+  year: 2026
+  url: "https://arxiv.org/abs/2605.07139"

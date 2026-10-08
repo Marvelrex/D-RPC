@@ -1,0 +1,101 @@
+# SGFT training config — Qwen3-1.7B guide model
+# Exact parameters from uniform_training_signature.json
+# Use with: SFT/distill_rationale.py (LoRA) or SFT/distill_rationale_full_sft.py (Full SFT)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+model_name_or_path: "Qwen/Qwen3-1.7B"
+tokenizer_name:     "Qwen/Qwen3-1.7B"
+
+# ── Data ──────────────────────────────────────────────────────────────────────
+dataset_paths:
+  gsm8k:      "Baselines/SGFT/data/sg_gsm8k.jsonl"
+  strategyqa: "Baselines/SGFT/data/sg_strategyqa.jsonl"
+  aqua:       "Baselines/SGFT/data/sg_aqua.jsonl"
+
+train_size: 2000          # N from §A3; also supports 1000 / 3000
+mode:   per_dataset       # per_dataset | mixed | curriculum
+regime: R0                # R0 = prompt_iv (zero-shot) | R3 = prompt_v (3-shot)
+
+# ── Training hyperparameters (identical for LoRA and Full SFT) ────────────────
+max_seq_len:         2048
+batch_size:          2
+grad_accum:          8
+learning_rate:       0.0001
+weight_decay:        0.01
+num_epochs:          2.0
+warmup_ratio:        0.03
+lr_scheduler_type:   linear
+max_grad_norm:       1.0
+optim:               adamw_torch
+bf16:                true
+seed:                42
+pad_to_max:          false
+max_samples:         null    # no cap
+
+# ── LoRA variant  (distill_rationale.py) ─────────────────────────────────────
+# use_lora: true
+# lora_r: 64
+# lora_alpha: 128
+# lora_dropout: 0.05
+# lora_target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+# ── Full-SFT variant  (distill_rationale_full_sft.py) ────────────────────────
+# use_lora: false
+# lora_r: 0
+# lora_alpha: 0
+# lora_dropout: 0.0
+# lora_target_modules: []
+
+# ── Checkpointing ─────────────────────────────────────────────────────────────
+logging_steps: 25
+save_steps:    250
+
+# ── Guide-model generation (post-training eval) ───────────────────────────────
+generate:         true
+max_gen_samples:  9999
+max_new_tokens:   256     # SG is short; 256 tokens is ample
+temperature:      0.0
+do_sample:        false
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Exact CLI commands
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── LoRA, R0, GSM8K ──────────────────────────────────────────────────────────
+# python SFT/distill_rationale.py \
+#   --strategy sgft --regime R0 \
+#   --model-name Qwen/Qwen3-1.7B --tokenizer-name Qwen/Qwen3-1.7B \
+#   --data-file Baselines/SGFT/data/sg_gsm8k.jsonl \
+#   --train-size 2000 --num-epochs 2 --bf16 \
+#   --lora-r 64 --lora-alpha 128 --lora-dropout 0.05 \
+#   --learning-rate 1e-4 --weight-decay 0.01 \
+#   --batch-size 2 --grad-accum 8 --warmup-ratio 0.03 \
+#   --seed 42 --max-length 2048 \
+#   --generate \
+#   --test-file data/GSM8K/test_indexed.jsonl \
+#   --max-gen-samples 9999 --max-new-tokens 256
+
+# ── Full-SFT, R0, AQUA ───────────────────────────────────────────────────────
+# python SFT/distill_rationale_full_sft.py \
+#   --strategy sgft --regime R0 \
+#   --model-name Qwen/Qwen3-1.7B --tokenizer-name Qwen/Qwen3-1.7B \
+#   --data-file Baselines/SGFT/data/sg_aqua.jsonl \
+#   --train-size 2000 --num-epochs 2 --bf16 \
+#   --learning-rate 1e-4 --weight-decay 0.01 \
+#   --batch-size 2 --grad-accum 8 --warmup-ratio 0.03 \
+#   --seed 42 --max-length 2048 \
+#   --generate \
+#   --test-file data/AQUA/gsm8k_format_test.jsonl \
+#   --max-gen-samples 9999 --max-new-tokens 256
+
+# ── R3 (3-shot), StrategyQA ──────────────────────────────────────────────────
+# python SFT/distill_rationale.py \
+#   --strategy sgft --regime R3 \
+#   --model-name Qwen/Qwen3-1.7B --tokenizer-name Qwen/Qwen3-1.7B \
+#   --data-file Baselines/SGFT/data/sg_strategyqa.jsonl \
+#   --train-size 2000 --num-epochs 2 --bf16 \
+#   --lora-r 64 --lora-alpha 128 --lora-dropout 0.05 \
+#   --generate \
+#   --test-file data/StrategyQA/dev.jsonl \
+#   --max-gen-samples 9999 --max-new-tokens 256
