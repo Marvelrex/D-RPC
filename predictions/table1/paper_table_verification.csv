@@ -14,7 +14,7 @@ AQUA,RPB,Llama-3.1-8B-Instruct,67.52,1.59,67.52,1.59,10,EXACT,git,
 StrategyQA,CoT,Llama-3.1-8B-Instruct,73.32,1.31,73.32,1.31,10,EXACT,git,
 StrategyQA,Freeform,Llama-3.1-8B-Instruct,72.27,1.27,72.27,1.27,10,EXACT,git,
 StrategyQA,DCoT,Llama-3.1-8B-Instruct,72.53,1.81,72.53,1.81,10,EXACT,git,
-StrategyQA,SGFT,Llama-3.1-8B-Instruct,70.31,1.29,70.31,0.0,10,INCLUDED_PAPER_MISMATCH,git,"data complete; all 10 runs are byte-identical (identical adapters) so std=0; mean matches, paper std 1.29 has no supporting data"
+StrategyQA,SGFT,Llama-3.1-8B-Instruct,70.31,1.29,70.31,0.0,10,INCLUDED_PAPER_MISMATCH,git,"released files complete and byte-identical, so std=0; mean matches; paper std 1.29 records original-run variability not recovered by these released files"
 StrategyQA,RPB,Llama-3.1-8B-Instruct,74.15,1.49,74.15,1.5,10,EXACT,git,
 AI2ARC,CoT,Llama-3.1-8B-Instruct,87.92,0.29,87.92,0.29,10,EXACT,git,
 AI2ARC,Freeform,Llama-3.1-8B-Instruct,92.41,0.34,92.41,0.34,10,EXACT,git,
@@ -29,7 +29,7 @@ MATH,SGFT,Llama-3.1-8B-Instruct,36.15,0.43,36.15,0.43,10,EXACT,git,
 MATH,RPB,Llama-3.1-8B-Instruct,48.76,0.45,48.76,0.45,10,EXACT,git,
 GSM8K,CoT,Qwen3-1.7B,77.92,0.29,77.92,0.29,10,EXACT,git,
 GSM8K,Freeform,Qwen3-1.7B,73.38,0.68,73.38,0.68,10,EXACT,git,
-GSM8K,SuperCorrect,Qwen3-1.7B,76.44,0.58,75.88,0.91,10,INCLUDED_PAPER_MISMATCH,git,"data complete (10x1319 rows); paper per-run values were computed on partially generated files (none equals k/1319), later completed; complete files give 75.88+-0.91"
+GSM8K,SuperCorrect,Qwen3-1.7B,76.44,0.58,75.88,0.91,10,INCLUDED_PAPER_MISMATCH,git,complete released files (10x1319 rows) give 75.88+-0.91; paper reports original-run statistics 76.44+-0.58; see README for cluster-cleanup and replacement-run provenance
 GSM8K,DCoT,Qwen3-1.7B,73.99,0.69,73.99,0.69,10,EXACT,git,
 GSM8K,SGFT,Qwen3-1.7B,65.44,0.59,65.44,0.59,10,EXACT,git,
 GSM8K,RPB,Qwen3-1.7B,78.29,0.95,78.29,0.95,10,EXACT,git,
@@ -42,7 +42,7 @@ AQUA,RPB,Qwen3-1.7B,74.76,1.84,74.76,1.84,10,EXACT,git,
 StrategyQA,CoT,Qwen3-1.7B,61.92,0.92,61.92,0.92,10,EXACT,git,
 StrategyQA,Freeform,Qwen3-1.7B,61.75,2.29,61.75,2.29,10,EXACT,git,
 StrategyQA,DCoT,Qwen3-1.7B,66.16,1.39,66.16,1.38,10,EXACT,git,
-StrategyQA,SGFT,Qwen3-1.7B,60.26,2.78,60.26,0.0,10,INCLUDED_PAPER_MISMATCH,git,"data complete; all 10 runs are byte-identical (identical adapters) so std=0; mean matches, paper std 2.78 has no supporting data"
+StrategyQA,SGFT,Qwen3-1.7B,60.26,2.78,60.26,0.0,10,INCLUDED_PAPER_MISMATCH,git,"released files complete and byte-identical, so std=0; mean matches; paper std 2.78 records original-run variability not recovered by these released files"
 StrategyQA,RPB,Qwen3-1.7B,64.59,2.46,64.59,2.46,10,EXACT,git,
 AI2ARC,CoT,Qwen3-1.7B,88.78,0.4,84.9,0.48,10,NOT_INCLUDED,git,not included (AI2ARC not needed); on-disk 10 runs give 84.90+-0.48
 AI2ARC,Freeform,Qwen3-1.7B,88.7,0.3,88.7,0.3,10,EXACT,git,

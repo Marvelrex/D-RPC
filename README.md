@@ -32,14 +32,22 @@ explanations.
   <img src="assets/methodology.png" alt="D-RPC framework" width="900">
 </p>
 
-All methods in the paper share one student recipe (LoRA r=64, alpha=128, lr 1e-4, batch 2 x 8,
-2 epochs, seed 42, greedy decoding, 2048 new tokens) and one scorer; the only thing that changes
-between D-RPC and the baselines is the teacher data the student is trained on.
+All methods in Table 1 share one student recipe (LoRA r=64, alpha=128, lr 1e-4, batch 2 x 8,
+2 epochs, seed 42, greedy decoding, 2048 new tokens). The scorer and baseline-specific exceptions
+are documented with the released predictions.
 
 ## Main results
 
 Accuracy (%) on the test sets, mean ± sample standard deviation over 10 LoRA runs (Table 1 of the
-paper). Every per-question output behind these numbers is in [`predictions/table1/`](predictions/table1/README.md).
+paper). The values below are the paper-reported results. Released predictions and their provenance
+are documented in [`predictions/table1/`](predictions/table1/README.md).
+
+Some original experiment artifacts were removed during cluster cleanup. The affected experiments
+were rerun with the same configuration, and the released artifacts include these replacement runs.
+The reruns retain the overall performance trend reported in the paper, while individual means and
+standard deviations can differ. The paper-reported values remain the reference for the tables below.
+The [verification report](predictions/table1/paper_table_verification.csv) records paper values and
+available-artifact statistics separately.
 
 **Llama-3.1-8B-Instruct**
 
@@ -61,9 +69,14 @@ paper). Every per-question output behind these numbers is in [`predictions/table
 | AI2ARC | 88.78 ± 0.40 | 88.70 ± 0.30 | – | 85.74 ± 2.90 | 75.99 ± 0.18 | **88.82 ± 0.54** |
 | MATH | 49.21 ± 0.40 | 48.09 ± 0.26 | 42.82 ± 0.36 | 54.91 ± 0.34 | 29.44 ± 0.29 | **59.72 ± 0.39** |
 
-`python -m drpc.eval.summarize_table1` recomputes this table from the released predictions
-(`predictions/table1/summary.md`); the per-cell comparison with the paper is in
-`predictions/table1/paper_table_verification.csv`.
+`python -m drpc.eval.summarize_table1` summarizes the released predictions.
+[`predictions/table1/summary.md`](predictions/table1/summary.md) reports statistics from those files,
+and [`paper_table_verification.csv`](predictions/table1/paper_table_verification.csv) provides the
+per-cell comparison with the paper, including the documented baseline-specific scoring rules.
+
+The bound-component diagnostic uses one checkpoint from ten runs for each configuration.
+Its LoRA ranks are r=128 for Llama-3.1-8B-Instruct and r=64 for Qwen3-1.7B. Table 1 uses r=64
+for both students and reports ten-run means.
 
 ## Repository layout
 

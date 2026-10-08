@@ -1,3 +1,9 @@
+# Summary of released prediction files
+
+These statistics are computed from the currently released files, which include replacement runs
+after cluster cleanup. The original paper-reported values are shown in the repository's main
+README and in the `paper_mean` / `paper_std` columns of `paper_table_verification.csv`.
+The prediction README documents coverage and scoring differences.
 
 ### Llama-3.1-8B-Instruct
 
